@@ -89,7 +89,7 @@ export default function Trust() {
             </div>
 
             <div className="absolute -bottom-4 -left-4 glass-card rounded-2xl p-5 border-green-500/30">
-              <div className="text-green-400 text-3xl font-black">500+</div>
+              <div className="text-green-400 text-3xl font-black">1,000+</div>
               <div className="text-white/70 text-sm font-medium">Installations Completed</div>
             </div>
             <div className="absolute -top-4 -right-4 glass-card rounded-2xl p-5 border-green-500/30">

@@ -109,8 +109,8 @@ export default function Services() {
           className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           {[
-            { label: "Projects Completed", value: "500+" },
-            { label: "Years of Experience", value: "10+" },
+            { label: "Projects Completed", value: "1,000+" },
+            { label: "Years of Experience", value: "15+" },
             { label: "Customer Satisfaction", value: "100%" },
           ].map((stat) => (
             <div key={stat.label} className="text-center glass-card rounded-2xl p-8">
