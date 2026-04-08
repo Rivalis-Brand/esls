@@ -42,28 +42,23 @@ export default function LogoIntro() {
         }}
       />
 
-      {/* Company name — visible during appear + putter, fades out before roll */}
-      <AnimatePresence>
-        {(phase === "appear" || phase === "putter") && (
-          <motion.div
-            className="absolute left-0 right-0 text-center pointer-events-none"
-            style={{ top: "60%" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.55, delay: phase === "appear" ? 0.4 : 0 }}
-          >
-            <div className="text-white font-black text-5xl tracking-widest uppercase leading-none drop-shadow-2xl"
-              style={{ textShadow: "0 0 40px rgba(34,197,94,0.6), 0 2px 8px rgba(0,0,0,0.8)" }}>
-              Elite Synthetic
-            </div>
-            <div className="text-green-400 font-bold text-xl tracking-wider uppercase mt-3"
-              style={{ textShadow: "0 0 20px rgba(34,197,94,0.8)" }}>
-              Lawn Solutions & Putting Greens
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Company name — always visible throughout entire intro */}
+      <motion.div
+        className="absolute left-0 right-0 text-center pointer-events-none"
+        style={{ top: "60%" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, delay: 0.4 }}
+      >
+        <div className="text-white font-black text-5xl tracking-widest uppercase leading-none drop-shadow-2xl"
+          style={{ textShadow: "0 0 40px rgba(34,197,94,0.6), 0 2px 8px rgba(0,0,0,0.8)" }}>
+          Elite Synthetic
+        </div>
+        <div className="text-green-400 font-bold text-xl tracking-wider uppercase mt-3"
+          style={{ textShadow: "0 0 20px rgba(34,197,94,0.8)" }}>
+          Lawn Solutions & Putting Greens
+        </div>
+      </motion.div>
 
       {/* Putter — swings in from back-swing position */}
       <AnimatePresence>
