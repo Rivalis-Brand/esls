@@ -21,9 +21,9 @@ export default function LogoIntro() {
     const rot = -((dist / 88) * (180 / Math.PI));
     setTarget({ x: deltaX, y: deltaY, rot });
 
-    const t1 = setTimeout(() => setPhase("putter"), 1100);
-    const t2 = setTimeout(() => setPhase("roll"), 1700);
-    const t3 = setTimeout(() => setPhase("done"), 3100);
+    const t1 = setTimeout(() => setPhase("putter"), 2000);
+    const t2 = setTimeout(() => setPhase("roll"), 3200);
+    const t3 = setTimeout(() => setPhase("done"), 5400);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
@@ -33,7 +33,7 @@ export default function LogoIntro() {
     <motion.div
       className="fixed inset-0 z-[300] bg-black overflow-hidden"
       animate={{ opacity: phase === "roll" ? 0 : 1 }}
-      transition={{ duration: 0.7, delay: phase === "roll" ? 0.9 : 0 }}
+      transition={{ duration: 1.0, delay: phase === "roll" ? 1.2 : 0 }}
     >
       {/* Subtle green turf lines */}
       <div className="absolute inset-0 opacity-10"
@@ -42,21 +42,23 @@ export default function LogoIntro() {
         }}
       />
 
-      {/* Company name — fades out before roll */}
+      {/* Company name — visible during appear + putter, fades out before roll */}
       <AnimatePresence>
-        {phase === "appear" && (
+        {(phase === "appear" || phase === "putter") && (
           <motion.div
             className="absolute left-0 right-0 text-center pointer-events-none"
-            style={{ top: "59%" }}
-            initial={{ opacity: 0, y: 18 }}
+            style={{ top: "60%" }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.45, delay: 0.35 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.55, delay: phase === "appear" ? 0.4 : 0 }}
           >
-            <div className="company-name-shimmer font-black text-4xl tracking-widest uppercase leading-none">
+            <div className="text-white font-black text-5xl tracking-widest uppercase leading-none drop-shadow-2xl"
+              style={{ textShadow: "0 0 40px rgba(34,197,94,0.6), 0 2px 8px rgba(0,0,0,0.8)" }}>
               Elite Synthetic
             </div>
-            <div className="text-green-400 text-lg tracking-wider uppercase font-semibold mt-2">
+            <div className="text-green-400 font-bold text-xl tracking-wider uppercase mt-3"
+              style={{ textShadow: "0 0 20px rgba(34,197,94,0.8)" }}>
               Lawn Solutions & Putting Greens
             </div>
           </motion.div>
@@ -77,7 +79,7 @@ export default function LogoIntro() {
             }}
             initial={{ rotate: 52 }}
             animate={{ rotate: -18 }}
-            transition={{ duration: 0.38, ease: [0.55, 0, 0.45, 1] }}
+            transition={{ duration: 0.65, ease: [0.55, 0, 0.45, 1] }}
           >
             {/* Shaft */}
             <div
@@ -129,10 +131,10 @@ export default function LogoIntro() {
         transition={
           phase === "roll"
             ? {
-                duration: 1.1,
+                duration: 1.9,
                 ease: [0.2, 0.8, 0.6, 1],
-                rotate: { duration: 1.1, ease: "easeIn" },
-                scale: { duration: 1.1, ease: "easeIn" },
+                rotate: { duration: 1.9, ease: "easeIn" },
+                scale: { duration: 1.9, ease: "easeIn" },
               }
             : {}
         }
