@@ -33,7 +33,7 @@ export default function Navbar() {
         <a href="#hero" className="flex items-center gap-3">
           <img src={logoImg} alt="Elite Synthetic Lawn Solutions" className="h-12 w-12 rounded-full object-cover border-2 border-green-500" />
           <div className="hidden sm:block">
-            <div className="text-white font-black text-sm leading-none tracking-widest uppercase">Elite Synthetic</div>
+            <div className="company-name-shimmer font-black text-sm leading-none tracking-widest uppercase">Elite Synthetic</div>
             <div className="text-green-400 text-xs leading-none tracking-wider uppercase font-semibold">Lawn Solutions & Putting Greens</div>
           </div>
         </a>

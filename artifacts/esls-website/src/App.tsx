@@ -12,12 +12,14 @@ import Trust from "@/components/Trust";
 import CTABanner from "@/components/CTABanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import LogoIntro from "@/components/LogoIntro";
 
 const queryClient = new QueryClient();
 
 function HomePage() {
   return (
     <>
+      <LogoIntro />
       <Navbar />
       <Hero />
       <Services />
