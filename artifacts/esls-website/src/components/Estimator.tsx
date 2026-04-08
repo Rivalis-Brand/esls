@@ -8,7 +8,7 @@ type ProjectType = "turf" | "putting" | "irrigation" | "hardscape";
 type TurfTier = "standard" | "premium" | "luxury";
 type SiteCondition = "easy" | "moderate" | "difficult";
 
-const PRICES: Record<TurfTier, number> = { standard: 8, premium: 11, luxury: 15 };
+const PRICES: Record<TurfTier, number> = { standard: 8, premium: 10, luxury: 12 };
 const CONDITION_MULTIPLIER: Record<SiteCondition, number> = { easy: 1.0, moderate: 1.1, difficult: 1.2 };
 
 interface EstimateResult {
@@ -215,8 +215,8 @@ export default function Estimator() {
                   <div className="grid grid-cols-3 gap-3">
                     {([
                       ["standard", "Standard", "$8/sq ft"],
-                      ["premium", "Premium", "$11/sq ft"],
-                      ["luxury", "Luxury", "$15/sq ft"],
+                      ["premium", "Premium", "$10/sq ft"],
+                      ["luxury", "Luxury", "$12/sq ft"],
                     ] as const).map(([val, label, price]) => (
                       <button
                         key={val}
