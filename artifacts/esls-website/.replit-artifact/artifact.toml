@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Elite Synthetic Lawn Solutions"
+version = "1.0.0"
+id = "artifacts/esls-website"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18770
+
+[services.development]
+run = "pnpm --filter @workspace/esls-website run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/esls-website", "run", "build" ]
+publicDir = "artifacts/esls-website/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18770"
+BASE_PATH = "/"

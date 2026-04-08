@@ -16,6 +16,24 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
+## Artifacts
+
+### Elite Synthetic Lawn Solutions Website (`artifacts/esls-website`)
+- **Type**: React + Vite (frontend-only, no backend)
+- **Preview Path**: `/`
+- **Firebase Project**: `esls-23c31`
+- **Features**:
+  - Luxury landing page with hero, services, gallery, reviews, estimator, contact
+  - Instant cost estimator with lead capture (saves to Firestore `estimates` collection)
+  - Photo-based area measurement tool using HTML Canvas
+  - Reviews carousel with 12 five-star reviews
+  - Photo gallery with lightbox (13 real project photos)
+  - Contact/inquiry form (saves to Firestore `inquiries` collection)
+  - Firebase Auth, Firestore integration
+  - Dark luxury design (black/green/white palette)
+  - Framer Motion animations throughout
+  - Mobile responsive with sticky CTA bar
+
 ## Key Commands
 
 - `pnpm run typecheck` — full typecheck across all packages

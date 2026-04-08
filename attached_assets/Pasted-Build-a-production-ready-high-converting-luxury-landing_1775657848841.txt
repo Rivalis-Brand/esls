@@ -1,0 +1,354 @@
+Build a **production-ready, high-converting, luxury landing page website** for a landscaping company.
+
+---
+
+## COMPANY INFO
+
+* Business Name: Elite Synthetic Lawn Solutions & Putting Greens
+* Owner: Art Silva
+* Phone: 714-253-8124
+* Email: [elitesyntheticlawnsolutions@gmail.com](mailto:elitesyntheticlawnsolutions@gmail.com)
+* Yelp: https://www.yelp.com/biz/elite-synthetic-lawn-solutions-fullerton
+* Instagram: https://www.instagram.com/elite_synthetic_lawns
+
+---
+
+## CORE OBJECTIVE
+
+Create a **$10,000+ quality website** that:
+
+* Instantly builds trust
+* Feels premium and modern
+* Converts visitors into leads
+* Includes advanced estimator tools
+
+NO placeholders. EVERYTHING must feel real.
+
+---
+
+## TECH STACK (STRICT)
+
+* React (Vite)
+* Tailwind CSS
+* Framer Motion
+* Firebase ONLY:
+
+  * Auth
+  * Firestore
+  * Firebase Functions
+
+DO NOT use Firebase Storage
+DO NOT use any Replit database
+
+---
+
+## UI / DESIGN RULES (CRITICAL)
+
+* ALL text must be clearly visible
+* NO low-contrast or clashing colors
+* Strong readability at all times
+* Luxury palette (dark, green, white)
+* Clean spacing system (consistent padding/margins)
+* Modern typography
+* Smooth animations
+* Visually polished, premium aesthetic
+
+---
+
+## HERO SECTION
+
+* Background image (uploaded assets)
+* Headline: “Transform Your Yard Into a Luxury Outdoor Experience”
+* Subheadline (turf + putting greens)
+* CTA: Get Free Estimate
+* Secondary CTA: Call Now
+* Use overlay for readability
+
+---
+
+## 🔥 INSTANT + PHOTO-BASED ESTIMATOR
+
+### STANDARD ESTIMATOR
+
+INPUTS:
+
+* Project Type:
+
+  * Artificial Turf
+  * Putting Green
+  * Irrigation
+  * Hardscapes / Softscapes
+
+* Square Footage (manual OR from photo tool)
+
+* Turf Tier:
+
+  * Standard ($8/sq ft)
+  * Premium ($11/sq ft)
+  * Luxury ($15/sq ft)
+
+* Site Conditions:
+
+  * Easy
+  * Moderate (+10%)
+  * Difficult (+20%)
+
+* Add-ons:
+
+  * Pet infill (+$2/sq ft)
+  * Drainage (+$3/sq ft)
+  * Custom design (+$500)
+
+---
+
+### CALCULATION LOGIC:
+
+1. Base = squareFootage × pricePerSqFt
+2. Add add-ons (per sq ft + flat fees)
+3. Apply multiplier:
+
+   * Moderate → ×1.10
+   * Difficult → ×1.20
+4. If >1500 sq ft → apply 5% discount
+
+---
+
+### OUTPUT:
+
+* Show:
+  Estimated Project Cost: $X – $X (±10%)
+* Show breakdown:
+
+  * Base cost
+  * Add-ons
+  * Adjustments
+
+---
+
+### LEAD CAPTURE (REQUIRED BEFORE RESULTS)
+
+* Full Name
+* Phone
+* Email
+
+---
+
+### DATA STORAGE:
+
+Save to Firestore (collection: estimates):
+
+* Inputs
+* Final estimate
+* Timestamp
+
+---
+
+### EMAIL FUNCTION:
+
+Send estimate details to:
+[elitesyntheticlawnsolutions@gmail.com](mailto:elitesyntheticlawnsolutions@gmail.com)
+
+---
+
+## 📸 PHOTO-BASED ESTIMATOR (NO STORAGE)
+
+### FLOW:
+
+1. User uploads yard photo
+2. Display image locally in browser (DO NOT upload anywhere)
+3. Render image inside canvas
+
+---
+
+### USER ACTION:
+
+* Draw/select area (polygon or brush tool)
+* Input one known measurement (example: fence = 20 ft)
+
+---
+
+### SYSTEM:
+
+* Scale drawing proportionally
+* Calculate square footage
+* Auto-fill estimator
+
+---
+
+### STORAGE:
+
+ONLY store:
+
+* Calculated square footage
+* Estimate inputs
+* Customer info
+* Timestamp
+
+DO NOT store images
+
+---
+
+## PREMIUM MATERIALS
+
+“Premium Turf Brands We Install”
+
+* Festival Turf
+* Tiger Turf
+* Shaw Flooring Turf
+
+---
+
+## SERVICES
+
+* Artificial Turf
+* Putting Greens
+* Irrigation
+* Hardscapes & Softscapes
+
+---
+
+## ⭐ REVIEWS (CAROUSEL)
+
+FUNCTIONALITY:
+
+* Horizontal slider
+* Auto-scroll (4–6 sec)
+* Pause on hover
+* Arrows + dots
+* Smooth animations
+
+CONTENT:
+
+* Minimum 12 reviews
+* Dates: 2024–present
+* ⭐ ALL 5 STARS
+* Realistic unique names
+
+ADMIN:
+
+* Firebase Auth login
+* Reply to reviews
+
+---
+
+## 🖼️ GALLERY (CAROUSEL + LIGHTBOX)
+
+* Horizontal scrolling gallery
+* Snap-to-image
+* Click → open modal
+* Next/prev navigation
+* Mobile swipe support
+
+Use uploaded images only
+
+---
+
+## RESIDENTIAL + COMMERCIAL
+
+Highlight:
+
+* Low maintenance
+* Durability
+* Property value increase
+
+---
+
+## SOCIAL PROOF
+
+### Yelp:
+
+* 5-star visual
+* Link to Yelp page
+
+### Instagram:
+
+* Styled feed layout
+* Link to Instagram
+
+---
+
+## INTAKE FORM
+
+Fields:
+
+* Name
+* Phone
+* Email
+* Address
+* Project details
+* Availability
+
+Save to Firestore (inquiries)
+Send email via Firebase Functions
+
+---
+
+## TRUST SECTION
+
+* Free Estimates
+* Residential & Commercial
+* Professional Installation
+* Premium Materials
+
+---
+
+## CTA SECTIONS
+
+* Call Now
+* Request Free Estimate
+
+---
+
+## FOOTER
+
+* Contact info
+* Clickable phone
+* Email
+* Yelp + Instagram links
+
+---
+
+## FIRESTORE RULES
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /inquiries/{docId} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+
+    match /estimates/{docId} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+
+    match /reviews/{docId} {
+      allow read: if true;
+      allow create, update, delete: if request.auth != null
+        && request.auth.uid == "ADMIN_UID_HERE";
+    }
+  }
+}
+```
+
+---
+
+## FINAL REQUIREMENT
+
+This must feel like:
+
+* A luxury brand website
+* A high-end sales funnel
+* A smart estimator tool
+
+GOAL:
+👉 Make users trust instantly
+👉 Make them want the service
+👉 Drive calls + submissions
+
+---
+
+Build full project structure and all required files.
