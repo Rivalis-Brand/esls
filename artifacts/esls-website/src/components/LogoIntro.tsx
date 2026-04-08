@@ -23,7 +23,7 @@ export default function LogoIntro() {
 
     const t1 = setTimeout(() => setPhase("putter"), 2000);
     const t2 = setTimeout(() => setPhase("roll"), 3200);
-    const t3 = setTimeout(() => setPhase("done"), 5400);
+    const t3 = setTimeout(() => setPhase("done"), 7000);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
@@ -33,7 +33,7 @@ export default function LogoIntro() {
     <motion.div
       className="fixed inset-0 z-[300] bg-black overflow-hidden"
       animate={{ opacity: phase === "roll" ? 0 : 1 }}
-      transition={{ duration: 1.0, delay: phase === "roll" ? 1.2 : 0 }}
+      transition={{ duration: 1.2, delay: phase === "roll" ? 2.4 : 0 }}
     >
       {/* Subtle green turf lines */}
       <div className="absolute inset-0 opacity-10"
@@ -131,10 +131,10 @@ export default function LogoIntro() {
         transition={
           phase === "roll"
             ? {
-                duration: 1.9,
-                ease: [0.2, 0.8, 0.6, 1],
-                rotate: { duration: 1.9, ease: "easeIn" },
-                scale: { duration: 1.9, ease: "easeIn" },
+                duration: 3.5,
+                ease: [0.85, 0, 0.15, 1],
+                rotate: { duration: 3.5, ease: [0.9, 0, 0.3, 1] },
+                scale: { duration: 3.5, ease: [0.9, 0, 0.1, 1] },
               }
             : {}
         }
