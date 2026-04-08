@@ -3,18 +3,18 @@ import { motion } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const reviews = [
-  { name: "Maria Gonzalez", date: "March 2025", text: "Art and his crew did an absolutely stunning job on our backyard. The turf looks better than any real grass we've ever had. Zero maintenance and the kids love it. Highly recommend!", location: "Fullerton, CA" },
-  { name: "Jason Park", date: "February 2025", text: "We got a custom putting green installed and couldn't be happier. My handicap has already dropped 3 strokes practicing at home. The quality of the install is impeccable.", location: "Anaheim, CA" },
-  { name: "Sandra & Mike Torres", date: "January 2025", text: "From the estimate to the final walkthrough, everything was professional and on-time. Our front yard went from embarrassing to the nicest on the block overnight!", location: "Placentia, CA" },
-  { name: "David Chen", date: "December 2024", text: "Transformed our commercial property with 3,200 sq ft of luxury turf. They handled the scale perfectly and finished ahead of schedule. Our tenants love it.", location: "Orange, CA" },
-  { name: "Brittney Wallace", date: "November 2024", text: "I have two large dogs and was worried about the pet infill. It has been perfect — no odors, easy to clean, and the dogs are obsessed with it. Life changing!", location: "Yorba Linda, CA" },
-  { name: "Robert Sanchez", date: "October 2024", text: "Elite installed turf and a 3-hole putting green in our backyard. The craftsmanship is incredible. Art personally oversaw every detail. Real pros.", location: "Brea, CA" },
-  { name: "Lisa Nguyen", date: "September 2024", text: "We were quoted by 4 companies. Elite was not the cheapest but they were by far the most professional and the quality shows. Worth every penny.", location: "Tustin, CA" },
-  { name: "Thomas Mitchell", date: "August 2024", text: "Our HOA board was skeptical about synthetic turf but the end result looks so natural they couldn't tell the difference at the inspection. Outstanding work.", location: "Laguna Hills, CA" },
-  { name: "Alicia Flores", date: "July 2024", text: "Installed turf + hardscaping together and the design integration is seamless. It looks like it was planned by a landscape architect. Art has a real eye for design.", location: "Garden Grove, CA" },
-  { name: "Kevin Reynolds", date: "June 2024", text: "Third project with Elite — always the same excellent standard. This time we did a sports area for the kids with custom markings. They absolutely nailed it.", location: "Irvine, CA" },
-  { name: "Rachel Hoffman", date: "May 2024", text: "Completely transformed our rental property. The tenants are thrilled and we've eliminated water and lawn care costs entirely. Best investment we've made.", location: "Santa Ana, CA" },
-  { name: "Carlos Medina", date: "April 2024", text: "I've seen a lot of turf installs that look fake up close. Elite's work genuinely fools people — the blade variety and infill makes it look 100% real. Incredible.", location: "Chino Hills, CA" },
+  { name: "Maria Gonzalez", date: "April 2026", text: "Art and his crew did an absolutely stunning job on our backyard. The turf looks better than any real grass we've ever had. Zero maintenance and the kids love it. Highly recommend!", location: "Fullerton, CA" },
+  { name: "Jason Park", date: "March 2026", text: "We got a custom putting green installed and couldn't be happier. My handicap has already dropped 3 strokes practicing at home. The quality of the install is impeccable.", location: "Anaheim, CA" },
+  { name: "Sandra & Mike Torres", date: "March 2026", text: "From the estimate to the final walkthrough, everything was professional and on-time. Our front yard went from embarrassing to the nicest on the block overnight!", location: "Placentia, CA" },
+  { name: "David Chen", date: "February 2026", text: "Transformed our commercial property with 3,200 sq ft of luxury turf. They handled the scale perfectly and finished ahead of schedule. Our tenants love it.", location: "Orange, CA" },
+  { name: "Brittney Wallace", date: "February 2026", text: "I have two large dogs and was worried about the pet infill. It has been perfect — no odors, easy to clean, and the dogs are obsessed with it. Life changing!", location: "Yorba Linda, CA" },
+  { name: "Robert Sanchez", date: "January 2026", text: "Elite installed turf and a 3-hole putting green in our backyard. The craftsmanship is incredible. Art personally oversaw every detail. Real pros.", location: "Brea, CA" },
+  { name: "Lisa Nguyen", date: "January 2026", text: "We were quoted by 4 companies. Elite was not the cheapest but they were by far the most professional and the quality shows. Worth every penny.", location: "Tustin, CA" },
+  { name: "Thomas Mitchell", date: "December 2025", text: "Our HOA board was skeptical about synthetic turf but the end result looks so natural they couldn't tell the difference at the inspection. Outstanding work.", location: "Laguna Hills, CA" },
+  { name: "Alicia Flores", date: "December 2025", text: "Installed turf + hardscaping together and the design integration is seamless. It looks like it was planned by a landscape architect. Art has a real eye for design.", location: "Garden Grove, CA" },
+  { name: "Kevin Reynolds", date: "November 2025", text: "Third project with Elite — always the same excellent standard. This time we did a sports area for the kids with custom markings. They absolutely nailed it.", location: "Irvine, CA" },
+  { name: "Rachel Hoffman", date: "November 2025", text: "Completely transformed our rental property. The tenants are thrilled and we've eliminated water and lawn care costs entirely. Best investment we've made.", location: "Santa Ana, CA" },
+  { name: "Carlos Medina", date: "October 2025", text: "I've seen a lot of turf installs that look fake up close. Elite's work genuinely fools people — the blade variety and infill makes it look 100% real. Incredible.", location: "Chino Hills, CA" },
 ];
 
 export default function Reviews() {
