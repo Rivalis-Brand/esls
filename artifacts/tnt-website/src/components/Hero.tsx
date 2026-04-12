@@ -134,7 +134,6 @@ export default function Hero() {
                 </div>
                 <div>
                   <div className="font-black text-white text-sm">Top Notch. Every Time.</div>
-                  <div className="text-xs text-white/40 mt-0.5">Licensed · Insured · Guaranteed</div>
                 </div>
               </div>
             </div>
