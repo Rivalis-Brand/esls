@@ -5,19 +5,19 @@ export default function Hero() {
     <section className="relative min-h-[100svh] flex items-start lg:items-center overflow-x-hidden">
       {/* Deep multi-layer background */}
       <div className="absolute inset-0" style={{
-        background: "linear-gradient(160deg, #020810 0%, #050e1a 40%, #041410 100%)"
+        background: "linear-gradient(160deg, #020c08 0%, #041a10 40%, #051020 100%)"
       }} />
       <div className="absolute inset-0" style={{
-        background: "radial-gradient(ellipse at 15% 60%, rgba(16,185,129,0.18) 0%, transparent 55%), radial-gradient(ellipse at 75% 25%, rgba(59,130,246,0.15) 0%, transparent 55%)"
+        background: "radial-gradient(ellipse at 10% 70%, rgba(16,185,129,0.32) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.18) 0%, transparent 50%), radial-gradient(ellipse at 60% 80%, rgba(16,185,129,0.15) 0%, transparent 45%)"
       }} />
 
       {/* Animated orbs */}
       <div className="absolute top-[10%] right-[5%] w-[600px] h-[600px] rounded-full opacity-25 animate-float pointer-events-none"
         style={{ background: "radial-gradient(circle, #3b82f6 0%, transparent 65%)", filter: "blur(70px)" }} />
-      <div className="absolute bottom-[5%] left-[0%] w-[500px] h-[500px] rounded-full opacity-20 pointer-events-none"
+      <div className="absolute bottom-[5%] left-[0%] w-[500px] h-[500px] rounded-full opacity-35 pointer-events-none"
         style={{ background: "radial-gradient(circle, #10b981 0%, transparent 65%)", filter: "blur(60px)", animationDelay: "2.5s" }} />
-      <div className="absolute top-[45%] left-[35%] w-[350px] h-[350px] rounded-full opacity-10 pointer-events-none"
-        style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 70%)", filter: "blur(70px)" }} />
+      <div className="absolute top-[30%] left-[20%] w-[400px] h-[400px] rounded-full opacity-20 pointer-events-none"
+        style={{ background: "radial-gradient(circle, #10b981 0%, transparent 70%)", filter: "blur(70px)" }} />
 
       {/* Grid overlay */}
       <div className="absolute inset-0 opacity-[0.025] pointer-events-none"
