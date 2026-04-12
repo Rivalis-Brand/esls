@@ -2,7 +2,7 @@ import crewImg from "@assets/Landscapers_installing_artificial_turf_outdoors_177
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100svh] flex items-center overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-start lg:items-center overflow-x-hidden">
       {/* Deep multi-layer background */}
       <div className="absolute inset-0" style={{
         background: "linear-gradient(160deg, #020810 0%, #050e1a 40%, #041410 100%)"
@@ -30,10 +30,10 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
         style={{ background: "linear-gradient(to top, #020810, transparent)" }} />
 
-      <div className="relative max-w-6xl mx-auto px-5 pt-28 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* LEFT: Text */}
-          <div>
+      <div className="relative max-w-6xl mx-auto px-5 pt-24 pb-16 lg:pt-28 lg:pb-20 w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+          {/* LEFT: Text — appears after photo on mobile, left on desktop */}
+          <div className="order-2 lg:order-1">
             {/* Live badge */}
             <div className="inline-flex items-center gap-2.5 border rounded-full px-4 py-2 mb-8"
               style={{
@@ -106,8 +106,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT: Crew photo */}
-          <div className="relative hidden lg:block">
+          {/* RIGHT: Crew photo — appears first on mobile */}
+          <div className="relative order-1 lg:order-2">
             {/* Glow behind image */}
             <div className="absolute inset-0 rounded-3xl opacity-40"
               style={{ background: "radial-gradient(circle at 50% 50%, rgba(16,185,129,0.4), rgba(59,130,246,0.3), transparent 70%)", filter: "blur(40px)", transform: "scale(1.1)" }} />
@@ -117,7 +117,7 @@ export default function Hero() {
               <img
                 src={crewImg}
                 alt="Top Notch Artificial Turf crew at work"
-                className="w-full h-[520px] object-cover"
+                className="w-full h-64 sm:h-80 lg:h-[520px] object-cover"
               />
               {/* Gradient overlay bottom */}
               <div className="absolute bottom-0 left-0 right-0 h-40"
