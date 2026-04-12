@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -57,72 +57,72 @@
 }
 
 :root {
-  --button-outline: rgba(0,0,0,.10);
-  --badge-outline: rgba(0,0,0,.05);
-  --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(0,0,0,.03);
-  --elevate-2: rgba(0,0,0,.08);
+  --button-outline: rgba(255,255,255,.10);
+  --badge-outline: rgba(255,255,255,.05);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255,255,255,.04);
+  --elevate-2: rgba(255,255,255,.09);
 
-  /* Clean white/green palette — forest green primary, warm orange CTA */
-  --background: 0 0% 100%;
-  --foreground: 210 15% 12%;
-  --border: 210 12% 88%;
-  --input: 210 12% 92%;
-  --ring: 152 50% 30%;
+  /* Premium dark: midnight black + royal blue + emerald green */
+  --background: 222 47% 5%;
+  --foreground: 210 20% 95%;
+  --border: 220 30% 14%;
+  --input: 220 30% 16%;
+  --ring: 160 70% 45%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 210 15% 12%;
-  --card-border: 210 12% 88%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 210 15% 12%;
-  --popover-border: 210 12% 88%;
+  --card: 222 40% 8%;
+  --card-foreground: 210 20% 95%;
+  --card-border: 220 30% 14%;
+  --popover: 222 40% 8%;
+  --popover-foreground: 210 20% 95%;
+  --popover-border: 220 30% 14%;
 
-  --primary: 152 50% 30%;
+  --primary: 160 70% 45%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 152 20% 96%;
-  --secondary-foreground: 152 50% 25%;
-  --muted: 210 15% 96%;
-  --muted-foreground: 210 10% 45%;
-  --accent: 24 88% 52%;
+  --secondary: 220 40% 12%;
+  --secondary-foreground: 210 15% 85%;
+  --muted: 220 35% 10%;
+  --muted-foreground: 220 15% 50%;
+  --accent: 217 91% 60%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --sidebar: 0 0% 100%;
-  --sidebar-foreground: 210 15% 12%;
-  --sidebar-border: 210 12% 88%;
-  --sidebar-primary: 152 50% 30%;
+  --sidebar: 222 47% 5%;
+  --sidebar-foreground: 210 20% 90%;
+  --sidebar-border: 220 30% 12%;
+  --sidebar-primary: 160 70% 45%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 152 20% 96%;
-  --sidebar-accent-foreground: 152 50% 25%;
-  --sidebar-ring: 152 50% 30%;
+  --sidebar-accent: 220 40% 12%;
+  --sidebar-accent-foreground: 210 15% 85%;
+  --sidebar-ring: 160 70% 45%;
 
-  --chart-1: 152 50% 30%;
-  --chart-2: 24 88% 52%;
-  --chart-3: 210 70% 50%;
-  --chart-4: 280 60% 55%;
-  --chart-5: 45 90% 50%;
+  --chart-1: 160 70% 45%;
+  --chart-2: 217 91% 60%;
+  --chart-3: 280 60% 60%;
+  --chart-4: 45 90% 55%;
+  --chart-5: 0 80% 60%;
 
   --app-font-sans: 'Plus Jakarta Sans', 'Inter', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
   --radius: .625rem;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
-  --shadow: 0 2px 6px rgba(0,0,0,.08);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.10);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,.10);
-  --shadow-xl: 0 16px 40px rgba(0,0,0,.12);
-  --shadow-2xl: 0 24px 60px rgba(0,0,0,.14);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.4);
+  --shadow: 0 2px 8px rgba(0,0,0,.5);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.5);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,.5);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,.6);
+  --shadow-2xl: 0 24px 64px rgba(0,0,0,.7);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
-  --primary-border: hsl(152 50% 24%);
-  --secondary-border: hsl(152 20% 88%);
-  --muted-border: hsl(210 15% 88%);
-  --accent-border: hsl(24 88% 44%);
-  --destructive-border: hsl(0 84% 52%);
-  --sidebar-primary-border: hsl(152 50% 24%);
-  --sidebar-accent-border: hsl(152 20% 88%);
+  --primary-border: hsl(160 70% 36%);
+  --secondary-border: hsl(220 40% 18%);
+  --muted-border: hsl(220 35% 16%);
+  --accent-border: hsl(217 91% 50%);
+  --destructive-border: hsl(0 84% 50%);
+  --sidebar-primary-border: hsl(160 70% 36%);
+  --sidebar-accent-border: hsl(220 40% 18%);
 }
 
 @layer base {
@@ -130,17 +130,60 @@
   body { @apply font-sans antialiased bg-background text-foreground; }
 }
 
-/* Smooth scroll */
 html { scroll-behavior: smooth; }
 
-/* Custom animations */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Premium gradient utilities */
+.gradient-text {
+  background: linear-gradient(135deg, #34d399 0%, #60a5fa 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.animate-fade-up { animation: fadeUp 0.6s ease forwards; }
 
-@keyframes shimmer {
+.gradient-text-gb {
+  background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(52,211,153,0.4), rgba(96,165,250,0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.card-glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animate-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+@keyframes shimmer-move {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
