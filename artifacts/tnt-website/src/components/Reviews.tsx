@@ -72,7 +72,7 @@ export default function Reviews() {
             Customer Reviews
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
-            What Orange County{" "}
+            What Southern California{" "}
             <span className="gradient-text">Is Saying</span>
           </h2>
           <div className="flex items-center justify-center gap-2.5 mt-5">

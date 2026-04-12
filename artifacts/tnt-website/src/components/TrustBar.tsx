@@ -1,6 +1,6 @@
 const stats = [
   { value: "13+", label: "Years Experience", icon: "🏆" },
-  { value: "500+", label: "Projects Completed", icon: "✅" },
+  { value: "1,000+", label: "Projects Completed", icon: "✅" },
   { value: "100%", label: "Licensed & Insured", icon: "🛡️" },
   { value: "5.0★", label: "Google Rating", icon: "⭐" },
 ];

@@ -12,12 +12,12 @@ export default function Footer() {
                 TN
               </div>
               <div>
-                <div className="font-black text-base text-white">Top Notch Turf</div>
+                <div className="font-black text-base text-white">Top Notch Artificial Turf</div>
                 <div className="text-xs text-white/30 tracking-wider">Anaheim, CA</div>
               </div>
             </div>
             <p className="text-white/35 text-sm leading-relaxed mb-6">
-              Premium artificial turf installation by Miguel Marquez. Serving Anaheim and all of Orange County for 13+ years with precision and pride.
+              Premium artificial turf installation by Miguel Marquez. Serving Anaheim and all of Southern California for 13+ years with precision and pride.
             </p>
             <div className="flex flex-wrap gap-2">
               {["Tiger Turf", "Shaw Flooring", "Festival Turf"].map((b) => (
@@ -58,7 +58,7 @@ export default function Footer() {
             <div className="space-y-4">
               {[
                 { icon: "📞", text: "(714) 269-3329", href: "tel:7142693329", label: "Call Miguel" },
-                { icon: "📍", text: "Anaheim, CA · Orange County", href: null, label: null },
+                { icon: "📍", text: "Anaheim, CA · Southern California", href: null, label: null },
                 { icon: "🕐", text: "Mon–Sat: 7am – 6pm", href: null, label: null },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
@@ -95,7 +95,7 @@ export default function Footer() {
           style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
         >
           <p className="text-xs text-white/20">
-            © 2025 Top Notch Turf · Anaheim, CA · All rights reserved
+            © 2025 Top Notch Artificial Turf · Anaheim, CA · All rights reserved
           </p>
           <div className="flex items-center gap-2 text-xs text-white/20">
             <svg className="w-3.5 h-3.5 text-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

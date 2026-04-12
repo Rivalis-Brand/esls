@@ -24,7 +24,7 @@ export default function Gallery() {
             <span className="gradient-text">Difference</span>
           </h2>
           <p className="text-white/35 text-lg mt-5 max-w-md mx-auto">
-            Real Orange County projects. Job photos being added soon — check back shortly.
+            Real Southern California projects. Job photos being added soon — check back shortly.
           </p>
         </div>
 

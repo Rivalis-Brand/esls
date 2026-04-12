@@ -36,10 +36,10 @@ export default function Navbar() {
           </div>
           <div className="leading-none">
             <div className="font-black text-base tracking-tight text-white">
-              Top Notch Turf
+              Top Notch Artificial Turf
             </div>
             <div className="text-[10px] font-medium text-white/40 tracking-wider uppercase">
-              Anaheim · Orange County
+              Southern California
             </div>
           </div>
         </a>

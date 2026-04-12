@@ -35,7 +35,7 @@ export default function Hero() {
             }}>
             <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
             <span className="text-emerald-400 text-xs font-bold tracking-widest uppercase">
-              13+ Years · Anaheim, CA · Orange County
+              13+ Years · Serving All of Southern California
             </span>
           </div>
 
@@ -46,7 +46,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-white/55 text-xl leading-relaxed mb-10 max-w-xl">
-            Miguel Marquez and the Top Notch Turf team bring precision, premium materials, and 13+ years of mastery to every installation across Orange County.
+            Miguel Marquez and the Top Notch Artificial Turf team bring precision, premium materials, and 13+ years of mastery to every installation across Southern California.
           </p>
 
           <div className="flex flex-wrap gap-4 mb-14">

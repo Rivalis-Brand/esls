@@ -23,7 +23,7 @@ export default function About() {
             </h2>
 
             <p className="text-white/50 text-lg leading-relaxed mb-5">
-              I'm Miguel Marquez, founder of Top Notch Turf. For over 13 years I've been bringing premium-grade turf installations to Anaheim and all of Orange County — one meticulous project at a time.
+              I'm Miguel Marquez, founder of Top Notch Artificial Turf. For over 13 years I've been bringing premium-grade turf installations to Anaheim and all of Southern California — one meticulous project at a time.
             </p>
             <p className="text-white/40 leading-relaxed mb-10">
               We're proud authorized installers for three of the finest turf brands in the business. That means access to warrantied, premium product backed by our own craftsmanship guarantee.
@@ -101,7 +101,7 @@ export default function About() {
                 </div>
                 <div className="text-xl font-bold text-white/60">Years of Mastery</div>
                 <div className="mt-6 pt-6 border-t border-white/10 text-white/30 text-sm">
-                  Anaheim, CA · Orange County, CA
+                  Anaheim, CA · Southern California
                 </div>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function About() {
               className="absolute -bottom-5 -left-5 rounded-2xl px-5 py-4 shadow-2xl"
               style={{ background: "linear-gradient(135deg, #10b981, #3b82f6)", boxShadow: "0 8px 32px rgba(16,185,129,0.3)" }}
             >
-              <div className="text-3xl font-black text-white">500+</div>
+              <div className="text-3xl font-black text-white">1,000+</div>
               <div className="text-sm font-medium text-white/80">Projects Completed</div>
             </div>
 
