@@ -50,7 +50,7 @@ export default function Hero() {
               <span className="text-white">Premium Turf.</span>
               <br />
               <span style={{
-                background: "linear-gradient(135deg, #34d399 0%, #60a5fa 55%, #a78bfa 100%)",
+                background: "linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #2563eb 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
