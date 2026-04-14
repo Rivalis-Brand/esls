@@ -1,6 +1,0 @@
-{
-  "installCommand": "pnpm install",
-  "buildCommand": "pnpm --filter @workspace/esls-website run build",
-  "outputDirectory": "artifacts/esls-website/dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-}
