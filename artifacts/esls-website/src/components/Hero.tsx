@@ -33,7 +33,7 @@ export default function Hero() {
 
           <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-4 leading-relaxed font-light">
             Premium artificial turf installation & custom putting greens.
-            Zero maintenance. Lasting beauty. Unmatched craftsmanship.
+            Low maintenance. Lasting beauty. Unmatched craftsmanship.
           </p>
 
           <p className="text-base text-green-400 font-semibold tracking-wide mb-10">
