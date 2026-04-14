@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import installImg from "@assets/Installing_artificial_turf_for_a_backyard_1775657908509.png";
+import installImg from "@/assets/Installing_artificial_turf_for_a_backyard_1775657908509.png";
 
 const brands = [
   {

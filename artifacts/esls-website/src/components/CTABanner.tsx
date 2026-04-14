@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Calculator } from "lucide-react";
-import bannerImg from "@assets/IMG_20260406_190255_1775657876475.jpeg";
+import bannerImg from "@/assets/IMG_20260406_190255_1775657876475.jpeg";
 
 export default function CTABanner() {
   return (

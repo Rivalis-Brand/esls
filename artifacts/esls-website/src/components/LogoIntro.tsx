@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import logoImg from "@assets/IMG_20260406_190242_1775657876475.jpeg";
+import logoImg from "@/assets/IMG_20260406_190242_1775657876475.jpeg";
 
 type Phase = "appear" | "putter" | "roll" | "slam" | "cta" | "done";
 

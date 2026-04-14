@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Shield, Home, Building2, Award, Clock, ThumbsUp } from "lucide-react";
-import heroImg2 from "@assets/IMG_20260406_190258_1775657876475.jpeg";
+import heroImg2 from "@/assets/IMG_20260406_190258_1775657876475.jpeg";
 
 const trustItems = [
   { icon: Shield, title: "Free Estimates", desc: "No-pressure consultations with a detailed quote — always at no cost to you." },

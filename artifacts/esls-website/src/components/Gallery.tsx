@@ -2,19 +2,19 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-import img1 from "@assets/IMG_20260406_190224_1775657876475.jpeg";
-import img2 from "@assets/IMG_20260406_190228_1775657876475.jpeg";
-import img3 from "@assets/IMG_20260406_190231_1775657876475.jpeg";
-import img4 from "@assets/IMG_20260406_190234_1775657876475.jpeg";
-import img5 from "@assets/IMG_20260406_190238_1775657876475.jpeg";
-import img6 from "@assets/IMG_20260406_190242_1775657876475.jpeg";
-import img7 from "@assets/IMG_20260406_190245_1775657876475.jpeg";
-import img8 from "@assets/IMG_20260406_190248_1775657876475.jpeg";
-import img9 from "@assets/IMG_20260406_190252_1775657876475.jpeg";
-import img10 from "@assets/IMG_20260406_190255_1775657876475.jpeg";
-import img11 from "@assets/IMG_20260406_190258_1775657876475.jpeg";
-import img12 from "@assets/IMG_20260406_190301_1775657876475.jpeg";
-import img13 from "@assets/Installing_artificial_turf_for_a_backyard_1775657908509.png";
+import img1 from "@/assets/IMG_20260406_190224_1775657876475.jpeg";
+import img2 from "@/assets/IMG_20260406_190228_1775657876475.jpeg";
+import img3 from "@/assets/IMG_20260406_190231_1775657876475.jpeg";
+import img4 from "@/assets/IMG_20260406_190234_1775657876475.jpeg";
+import img5 from "@/assets/IMG_20260406_190238_1775657876475.jpeg";
+import img6 from "@/assets/IMG_20260406_190242_1775657876475.jpeg";
+import img7 from "@/assets/IMG_20260406_190245_1775657876475.jpeg";
+import img8 from "@/assets/IMG_20260406_190248_1775657876475.jpeg";
+import img9 from "@/assets/IMG_20260406_190252_1775657876475.jpeg";
+import img10 from "@/assets/IMG_20260406_190255_1775657876475.jpeg";
+import img11 from "@/assets/IMG_20260406_190258_1775657876475.jpeg";
+import img12 from "@/assets/IMG_20260406_190301_1775657876475.jpeg";
+import img13 from "@/assets/Installing_artificial_turf_for_a_backyard_1775657908509.png";
 
 const images = [
   { src: img1, label: "Luxury Lawn with Palms" },

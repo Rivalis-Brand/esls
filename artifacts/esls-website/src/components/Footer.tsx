@@ -1,5 +1,5 @@
 import { Phone, Mail, Instagram, Star } from "lucide-react";
-import logoImg from "@assets/IMG_20260406_190242_1775657876475.jpeg";
+import logoImg from "@/assets/IMG_20260406_190242_1775657876475.jpeg";
 
 export default function Footer() {
   return (

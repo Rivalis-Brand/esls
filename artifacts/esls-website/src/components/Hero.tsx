@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Calculator, ChevronDown } from "lucide-react";
-import heroImg from "@assets/IMG_20260406_190248_1775657876475.jpeg";
+import heroImg from "@/assets/IMG_20260406_190248_1775657876475.jpeg";
 
 export default function Hero() {
   return (
