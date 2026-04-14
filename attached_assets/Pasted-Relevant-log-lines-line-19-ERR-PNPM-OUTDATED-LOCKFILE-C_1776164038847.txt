@@ -1,0 +1,33 @@
+Relevant log lines
+line 19: "ERR_PNPM_OUTDATED_LOCKFILE Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date..."
+line 20: CI note: "this setting is true by default"
+line 22: "specifiers in the lockfile don't match specifiers in package.json: * 1 dependencies were removed: @workspace/api-client-react@"
+line 24: "Failing build: Failed to install dependencies"
+Diagnosis
+
+pnpm failed because the lockfile (pnpm-lock.yaml) is out of sync with package.json/workspace package specifiers. CI runs with frozen-lockfile by default, so any mismatch causes install to abort. The error specifically reports a removed workspace dependency "@workspace/api-client-react" in the lockfile vs package.json (line 19, line 22).
+Cause
+
+You changed workspace package specifiers (added/removed/renamed a workspace or dependency) but did not update and commit pnpm-lock.yaml. Netlify's CI uses a frozen lockfile, so it refuses to update the lockfile during the build.
+Solutions (pick one; preferred: update lockfile and commit)
+
+Preferred — update lockfile locally and commit
+Verify the workspace/package change is intentional and that the package exists (or was intentionally removed) in package.json of the workspace(s).
+On your development machine (same repo root):
+# ensure you have the repo and any local changes committed
+git pull
+# install and update the lockfile for the workspace root
+pnpm -w install
+# commit the updated lockfile
+git add pnpm-lock.yaml
+git commit -m "chore: update pnpm-lock.yaml"
+git push
+Push to GitHub; Netlify build will now use the updated pnpm-lock.yaml and succeed.
+Temporary/workaround — allow CI to install without frozen lockfile
+Not recommended long-term because it hides lockfile drift. If you need an immediate unblock, set an environment variable in Netlify:
+Key: PNPM_FLAGS
+Value: --no-frozen-lockfile
+Or set:
+Key: PNPM_CONFIG_FROZEN_LOCKFILE
+Value: false
+This lets pnpm update the lockfile during the build, but you should still update and commit pnpm-lock.yaml locally afterward.
