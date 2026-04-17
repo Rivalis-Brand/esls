@@ -46,6 +46,7 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<Tab>("introLeads");
   const [data, setData] = useState<Record<Tab, Lead[]>>({ introLeads: [], estimates: [], inquiries: [] });
   const [loading, setLoading] = useState(false);
+  const [firebaseError, setFirebaseError] = useState<string | null>(null);
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -67,14 +68,19 @@ export default function Dashboard() {
   useEffect(() => {
     if (!authed) return;
     setLoading(true);
+    setFirebaseError(null);
     const tabs: Tab[] = ["introLeads", "estimates", "inquiries"];
     Promise.all(
       tabs.map(async (tab) => {
         try {
-          const q = query(collection(db, tab), orderBy("createdAt", "desc"));
+          const q = query(collection(db, tab), orderBy("timestamp", "desc"));
           const snap = await getDocs(q);
           return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-        } catch {
+        } catch (err: any) {
+          if (err?.code === "permission-denied") {
+            setFirebaseError("Firebase permission denied — update your Firestore security rules to allow reads.");
+            return [];
+          }
           try {
             const snap = await getDocs(collection(db, tab));
             return snap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -175,6 +181,15 @@ export default function Dashboard() {
             </button>
           ))}
         </div>
+
+        {firebaseError && (
+          <div className="mb-4 bg-red-500/10 border border-red-500/30 rounded-xl px-5 py-4 text-red-400 text-sm">
+            <strong>Firebase Error:</strong> {firebaseError}
+            <div className="mt-2 text-red-400/70 text-xs">
+              Go to Firebase Console → Firestore → Rules and set: <code className="bg-black/30 px-1 rounded">allow read, write: if true;</code> (for testing) or restrict to authenticated users.
+            </div>
+          </div>
+        )}
 
         {loading ? (
           <div className="text-center py-20 text-white/30">Loading leads...</div>
