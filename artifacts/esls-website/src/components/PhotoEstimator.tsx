@@ -150,9 +150,9 @@ export default function PhotoEstimator() {
           <div className="inline-flex items-center gap-2 bg-green-600/15 border border-green-500/30 text-green-400 text-xs font-bold tracking-widest uppercase px-5 py-2 rounded-full mb-4">
             Advanced Tool
           </div>
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <img src={rivalisLogo} alt="Rivalis" className="w-6 h-6 rounded object-cover" />
-            <span className="text-white/40 text-xs tracking-wider">Powered by <a href="https://rivalislife.vercel.app" target="_blank" rel="noopener noreferrer" className="text-red-400 font-semibold hover:text-red-300 transition-colors">Rivalis Computer Vision</a></span>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <img src={rivalisLogo} alt="Rivalis" className="w-12 h-12 rounded object-cover" />
+            <span className="text-white/40 text-sm tracking-wider">Powered by <a href="https://rivalislife.vercel.app" target="_blank" rel="noopener noreferrer" className="text-red-400 font-bold text-sm hover:text-red-300 transition-colors">Rivalis Computer Vision</a></span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             Photo-Based <span className="text-gradient">Area Measurer</span>
