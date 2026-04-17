@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 const ADMIN_PASSWORD = "Artieboi!";
@@ -70,23 +70,25 @@ export default function Dashboard() {
     setLoading(true);
     setFirebaseError(null);
     const tabs: Tab[] = ["introLeads", "estimates", "inquiries"];
+
+    const sortByTime = (docs: Lead[]) =>
+      [...docs].sort((a, b) => {
+        const ta = a.timestamp?.seconds ?? (a.timestamp instanceof Date ? a.timestamp.getTime() / 1000 : 0);
+        const tb = b.timestamp?.seconds ?? (b.timestamp instanceof Date ? b.timestamp.getTime() / 1000 : 0);
+        return tb - ta;
+      });
+
     Promise.all(
       tabs.map(async (tab) => {
         try {
-          const q = query(collection(db, tab), orderBy("timestamp", "desc"));
-          const snap = await getDocs(q);
-          return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          const snap = await getDocs(collection(db, tab));
+          const docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          return sortByTime(docs);
         } catch (err: any) {
           if (err?.code === "permission-denied") {
-            setFirebaseError("Firebase permission denied — update your Firestore security rules to allow reads.");
-            return [];
+            setFirebaseError("Firebase permission denied — go to Firebase Console → Firestore → Rules and set: allow read, write: if true;");
           }
-          try {
-            const snap = await getDocs(collection(db, tab));
-            return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-          } catch {
-            return [];
-          }
+          return [];
         }
       })
     ).then(([introLeads, estimates, inquiries]) => {
