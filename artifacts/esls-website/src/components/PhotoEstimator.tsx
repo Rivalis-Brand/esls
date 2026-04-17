@@ -152,7 +152,7 @@ export default function PhotoEstimator() {
           </div>
           <div className="flex items-center justify-center gap-2 mb-6">
             <img src={rivalisLogo} alt="Rivalis" className="w-6 h-6 rounded object-cover" />
-            <span className="text-white/40 text-xs tracking-wider">Powered by <span className="text-red-400 font-semibold">Rivalis Computer Vision</span></span>
+            <span className="text-white/40 text-xs tracking-wider">Powered by <a href="https://rivalislife.vercel.app" target="_blank" rel="noopener noreferrer" className="text-red-400 font-semibold hover:text-red-300 transition-colors">Rivalis Computer Vision</a></span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             Photo-Based <span className="text-gradient">Area Measurer</span>
