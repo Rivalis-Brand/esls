@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
-const ADMIN_PASSWORD = "esls-admin-2024";
+const ADMIN_PASSWORD = "Artieboi!";
 const SESSION_KEY = "esls_admin_session";
 
 type Lead = {
