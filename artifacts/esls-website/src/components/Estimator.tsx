@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Calculator, User, Phone, Mail, CheckCircle, ChevronDown } from "lucide-react";
+import rivalisLogo from "@/assets/rivalis-logo.png";
 
 type ProjectType = "turf" | "putting" | "irrigation" | "hardscape";
 type TurfTier = "standard" | "premium" | "luxury";
@@ -131,8 +132,12 @@ export default function Estimator() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-green-600/15 border border-green-500/30 text-green-400 text-xs font-bold tracking-widest uppercase px-5 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-green-600/15 border border-green-500/30 text-green-400 text-xs font-bold tracking-widest uppercase px-5 py-2 rounded-full mb-4">
             Instant Pricing Tool
+          </div>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <img src={rivalisLogo} alt="Rivalis" className="w-6 h-6 rounded object-cover" />
+            <span className="text-white/40 text-xs tracking-wider">Powered by <span className="text-red-400 font-semibold">Rivalis Computer Vision</span></span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             Get Your <span className="text-gradient">Free Estimate</span>

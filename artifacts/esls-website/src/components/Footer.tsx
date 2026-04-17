@@ -1,5 +1,6 @@
 import { Phone, Mail, Instagram, Star } from "lucide-react";
 import logoImg from "@/assets/IMG_20260406_190242_1775657876475.jpeg";
+import mapmyocLogo from "@/assets/mapmyoc-logo.png";
 
 export default function Footer() {
   return (
@@ -61,6 +62,26 @@ export default function Footer() {
           <div className="flex gap-6 text-white/30 text-xs">
             <span>Licensed & Insured</span>
             <span>Serving Southern California</span>
+          </div>
+        </div>
+
+        <div className="mt-8 border-t border-white/5 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-white/3 border border-white/8 rounded-2xl px-6 py-5">
+            <div className="flex items-center gap-4">
+              <img src={mapmyocLogo} alt="MapMyOC" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
+              <div>
+                <div className="text-white/80 font-bold text-sm">Marketing Powered by MapMyOC</div>
+                <div className="text-white/40 text-xs mt-0.5 max-w-xs">
+                  This website was built and powered by MapMyOC — Orange County's digital marketing specialists helping local businesses grow online.
+                </div>
+              </div>
+            </div>
+            <a
+              href="mailto:mapmyoc@gmail.com"
+              className="flex-shrink-0 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/60 hover:text-white text-xs font-medium transition-all"
+            >
+              Contact MapMyOC →
+            </a>
           </div>
         </div>
       </div>
