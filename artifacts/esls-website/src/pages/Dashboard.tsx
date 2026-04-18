@@ -47,6 +47,7 @@ export default function Dashboard() {
   const [data, setData] = useState<Record<Tab, Lead[]>>({ introLeads: [], estimates: [], inquiries: [] });
   const [loading, setLoading] = useState(false);
   const [firebaseError, setFirebaseError] = useState<string | null>(null);
+  const [debugLog, setDebugLog] = useState<string[]>([]);
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -65,11 +66,12 @@ export default function Dashboard() {
     setPasswordInput("");
   }
 
-  useEffect(() => {
-    if (!authed) return;
+  const fetchData = () => {
     setLoading(true);
     setFirebaseError(null);
+    setDebugLog([]);
     const tabs: Tab[] = ["introLeads", "estimates", "inquiries"];
+    const logs: string[] = [];
 
     const sortByTime = (docs: Lead[]) =>
       [...docs].sort((a, b) => {
@@ -81,20 +83,32 @@ export default function Dashboard() {
     Promise.all(
       tabs.map(async (tab) => {
         try {
+          logs.push(`Fetching ${tab}...`);
           const snap = await getDocs(collection(db, tab));
+          logs.push(`✓ ${tab}: ${snap.docs.length} docs found`);
           const docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
           return sortByTime(docs);
         } catch (err: any) {
+          const msg = err?.code ?? err?.message ?? String(err);
+          logs.push(`✗ ${tab} error: ${msg}`);
           if (err?.code === "permission-denied") {
-            setFirebaseError("Firebase permission denied — go to Firebase Console → Firestore → Rules and set: allow read, write: if true;");
+            setFirebaseError("Firebase rules are blocking reads. Go to Firebase Console → Firestore → Rules and set: allow read, write: if true;");
+          } else {
+            setFirebaseError(`Error fetching data: ${msg}`);
           }
           return [];
         }
       })
     ).then(([introLeads, estimates, inquiries]) => {
       setData({ introLeads, estimates, inquiries });
+      setDebugLog(logs);
       setLoading(false);
     });
+  };
+
+  useEffect(() => {
+    if (!authed) return;
+    fetchData();
   }, [authed]);
 
   if (!authed) {
@@ -153,6 +167,7 @@ export default function Dashboard() {
           <p className="text-white/40 text-xs">Elite Synthetic Lawn Solutions · {total} total leads</p>
         </div>
         <div className="flex items-center gap-4">
+          <button onClick={fetchData} className="text-sm text-white/40 hover:text-green-400 transition">↻ Reload</button>
           <a href="/" className="text-white/40 hover:text-white text-sm transition">← Site</a>
           <button onClick={handleLogout} className="text-sm text-white/40 hover:text-red-400 transition">Sign out</button>
         </div>
@@ -186,10 +201,17 @@ export default function Dashboard() {
 
         {firebaseError && (
           <div className="mb-4 bg-red-500/10 border border-red-500/30 rounded-xl px-5 py-4 text-red-400 text-sm">
-            <strong>Firebase Error:</strong> {firebaseError}
-            <div className="mt-2 text-red-400/70 text-xs">
-              Go to Firebase Console → Firestore → Rules and set: <code className="bg-black/30 px-1 rounded">allow read, write: if true;</code> (for testing) or restrict to authenticated users.
-            </div>
+            <strong>Error:</strong> {firebaseError}
+          </div>
+        )}
+
+        {debugLog.length > 0 && (
+          <div className="mb-4 bg-white/3 border border-white/10 rounded-xl px-5 py-3 font-mono text-xs space-y-1">
+            {debugLog.map((line, i) => (
+              <div key={i} className={line.startsWith("✓") ? "text-green-400" : line.startsWith("✗") ? "text-red-400" : "text-white/40"}>
+                {line}
+              </div>
+            ))}
           </div>
         )}
 
