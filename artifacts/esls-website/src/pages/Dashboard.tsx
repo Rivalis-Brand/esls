@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, updateDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 const ADMIN_PASSWORD = "Artieboi!";
@@ -7,13 +7,15 @@ const SESSION_KEY = "esls_admin_session";
 
 type Lead = {
   id: string;
+  followedUp?: boolean;
   [key: string]: any;
 };
 
 type Tab = "introLeads" | "estimates" | "inquiries";
 
 function formatValue(val: any): string {
-  if (!val) return "—";
+  if (val === null || val === undefined) return "—";
+  if (typeof val === "boolean") return val ? "Yes" : "No";
   if (typeof val === "object" && val?.seconds) {
     return new Date(val.seconds * 1000).toLocaleDateString("en-US", {
       month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit"
@@ -24,19 +26,20 @@ function formatValue(val: any): string {
 }
 
 const COLUMN_ORDER: Record<Tab, string[]> = {
-  introLeads: ["name", "phone", "email", "source", "createdAt", "timestamp"],
-  estimates:  ["name", "phone", "email", "sqft", "surface", "total", "createdAt", "timestamp"],
-  inquiries:  ["name", "phone", "email", "message", "service", "createdAt", "timestamp"],
+  introLeads: ["name", "phone", "email", "source", "timestamp"],
+  estimates:  ["name", "phone", "email", "sqft", "surface", "total", "timestamp"],
+  inquiries:  ["name", "phone", "email", "message", "service", "timestamp"],
 };
 
 function getColumns(tab: Tab, leads: Lead[]): string[] {
   const preferred = COLUMN_ORDER[tab];
-  const all = leads.length > 0 ? Object.keys(leads[0]).filter(k => k !== "id") : [];
-  const sorted = [
+  const all = leads.length > 0
+    ? Object.keys(leads[0]).filter(k => k !== "id" && k !== "followedUp")
+    : [];
+  return [
     ...preferred.filter(k => all.includes(k)),
     ...all.filter(k => !preferred.includes(k)),
   ];
-  return sorted;
 }
 
 export default function Dashboard() {
@@ -48,6 +51,8 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [firebaseError, setFirebaseError] = useState<string | null>(null);
   const [debugLog, setDebugLog] = useState<string[]>([]);
+  const [actionId, setActionId] = useState<string | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -75,8 +80,8 @@ export default function Dashboard() {
 
     const sortByTime = (docs: Lead[]) =>
       [...docs].sort((a, b) => {
-        const ta = a.timestamp?.seconds ?? (a.timestamp instanceof Date ? a.timestamp.getTime() / 1000 : 0);
-        const tb = b.timestamp?.seconds ?? (b.timestamp instanceof Date ? b.timestamp.getTime() / 1000 : 0);
+        const ta = a.timestamp?.seconds ?? 0;
+        const tb = b.timestamp?.seconds ?? 0;
         return tb - ta;
       });
 
@@ -111,6 +116,40 @@ export default function Dashboard() {
     fetchData();
   }, [authed]);
 
+  async function toggleFollowedUp(lead: Lead) {
+    setActionId(lead.id);
+    try {
+      const newVal = !lead.followedUp;
+      await updateDoc(doc(db, activeTab, lead.id), { followedUp: newVal });
+      setData(prev => ({
+        ...prev,
+        [activeTab]: prev[activeTab].map(l =>
+          l.id === lead.id ? { ...l, followedUp: newVal } : l
+        ),
+      }));
+    } catch (err: any) {
+      setFirebaseError(`Could not update: ${err?.code ?? err?.message}`);
+    } finally {
+      setActionId(null);
+    }
+  }
+
+  async function deleteLead(id: string) {
+    setActionId(id);
+    try {
+      await deleteDoc(doc(db, activeTab, id));
+      setData(prev => ({
+        ...prev,
+        [activeTab]: prev[activeTab].filter(l => l.id !== id),
+      }));
+    } catch (err: any) {
+      setFirebaseError(`Could not delete: ${err?.code ?? err?.message}`);
+    } finally {
+      setActionId(null);
+      setConfirmDelete(null);
+    }
+  }
+
   if (!authed) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center px-4">
@@ -134,10 +173,7 @@ export default function Dashboard() {
               autoFocus
             />
             {passwordError && <p className="text-red-400 text-sm">Incorrect password.</p>}
-            <button
-              type="submit"
-              className="w-full py-3 rounded-lg bg-green-500 hover:bg-green-400 text-black font-bold transition"
-            >
+            <button type="submit" className="w-full py-3 rounded-lg bg-green-500 hover:bg-green-400 text-black font-bold transition">
               Sign In
             </button>
           </form>
@@ -158,9 +194,12 @@ export default function Dashboard() {
   const currentLeads = data[activeTab];
   const columns = getColumns(activeTab, currentLeads);
   const total = data.introLeads.length + data.estimates.length + data.inquiries.length;
+  const followedCount = currentLeads.filter(l => l.followedUp).length;
+  const pendingCount = currentLeads.length - followedCount;
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Header */}
       <div className="border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div>
           <h1 className="text-lg font-bold text-white">Lead Dashboard</h1>
@@ -174,6 +213,7 @@ export default function Dashboard() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6">
+        {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           {tabs.map(t => (
             <div key={t.key} className="bg-white/5 border border-white/10 rounded-xl p-4">
@@ -183,6 +223,7 @@ export default function Dashboard() {
           ))}
         </div>
 
+        {/* Tabs */}
         <div className="flex gap-2 mb-4">
           {tabs.map(t => (
             <button
@@ -199,12 +240,26 @@ export default function Dashboard() {
           ))}
         </div>
 
+        {/* Follow-up summary for current tab */}
+        {currentLeads.length > 0 && (
+          <div className="flex gap-3 mb-4">
+            <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg px-4 py-2 text-xs text-yellow-400">
+              ⏳ {pendingCount} need follow-up
+            </div>
+            <div className="bg-green-500/10 border border-green-500/20 rounded-lg px-4 py-2 text-xs text-green-400">
+              ✓ {followedCount} followed up
+            </div>
+          </div>
+        )}
+
+        {/* Error */}
         {firebaseError && (
           <div className="mb-4 bg-red-500/10 border border-red-500/30 rounded-xl px-5 py-4 text-red-400 text-sm">
             <strong>Error:</strong> {firebaseError}
           </div>
         )}
 
+        {/* Debug log */}
         {debugLog.length > 0 && (
           <div className="mb-4 bg-white/3 border border-white/10 rounded-xl px-5 py-3 font-mono text-xs space-y-1">
             {debugLog.map((line, i) => (
@@ -215,6 +270,32 @@ export default function Dashboard() {
           </div>
         )}
 
+        {/* Confirm delete modal */}
+        {confirmDelete && (
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4">
+            <div className="bg-zinc-900 border border-white/10 rounded-2xl p-6 max-w-sm w-full text-center">
+              <p className="text-white font-semibold mb-2">Delete this lead?</p>
+              <p className="text-white/50 text-sm mb-6">This cannot be undone.</p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setConfirmDelete(null)}
+                  className="flex-1 py-2 rounded-lg bg-white/10 text-white/70 hover:bg-white/20 transition text-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => deleteLead(confirmDelete)}
+                  disabled={actionId === confirmDelete}
+                  className="flex-1 py-2 rounded-lg bg-red-500 hover:bg-red-400 text-white font-bold transition text-sm disabled:opacity-50"
+                >
+                  {actionId === confirmDelete ? "Deleting…" : "Delete"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Table */}
         {loading ? (
           <div className="text-center py-20 text-white/30">Loading leads...</div>
         ) : currentLeads.length === 0 ? (
@@ -226,22 +307,57 @@ export default function Dashboard() {
                 <thead>
                   <tr className="border-b border-white/10 bg-white/5">
                     <th className="px-4 py-3 text-left text-white/40 font-medium text-xs uppercase">#</th>
+                    <th className="px-4 py-3 text-left text-white/40 font-medium text-xs uppercase whitespace-nowrap">Status</th>
                     {columns.map(col => (
                       <th key={col} className="px-4 py-3 text-left text-white/40 font-medium text-xs uppercase whitespace-nowrap">
                         {col}
                       </th>
                     ))}
+                    <th className="px-4 py-3 text-right text-white/40 font-medium text-xs uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {currentLeads.map((lead, i) => (
-                    <tr key={lead.id} className="border-b border-white/5 hover:bg-white/5 transition">
+                    <tr
+                      key={lead.id}
+                      className={`border-b border-white/5 transition ${
+                        lead.followedUp ? "bg-green-500/5" : "hover:bg-white/5"
+                      }`}
+                    >
                       <td className="px-4 py-3 text-white/30">{i + 1}</td>
+
+                      {/* Follow-up toggle */}
+                      <td className="px-4 py-3">
+                        <button
+                          onClick={() => toggleFollowedUp(lead)}
+                          disabled={actionId === lead.id}
+                          title={lead.followedUp ? "Mark as not followed up" : "Mark as followed up"}
+                          className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition ${
+                            lead.followedUp
+                              ? "bg-green-500/20 text-green-400 hover:bg-green-500/30"
+                              : "bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20"
+                          } disabled:opacity-40`}
+                        >
+                          {actionId === lead.id ? "…" : lead.followedUp ? "✓ Done" : "⏳ Pending"}
+                        </button>
+                      </td>
+
                       {columns.map(col => (
-                        <td key={col} className="px-4 py-3 text-white/80 max-w-[240px] truncate">
+                        <td key={col} className="px-4 py-3 text-white/80 max-w-[220px] truncate">
                           {formatValue(lead[col])}
                         </td>
                       ))}
+
+                      {/* Delete */}
+                      <td className="px-4 py-3 text-right">
+                        <button
+                          onClick={() => setConfirmDelete(lead.id)}
+                          title="Delete lead"
+                          className="text-white/20 hover:text-red-400 transition text-lg leading-none"
+                        >
+                          ×
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
